@@ -1,0 +1,7 @@
+
+{
+    "python.analysis.extraPaths": [
+        "/content/Text-to-image-synthesis-with-GANs/src/misc",
+        "/content/Text-to-image-synthesis-with-GANs/src"
+    ]
+}
