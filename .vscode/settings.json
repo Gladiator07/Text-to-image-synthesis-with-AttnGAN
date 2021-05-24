@@ -3,5 +3,6 @@
     "python.analysis.extraPaths": [
         "/content/Text-to-image-synthesis-with-GANs/src/misc",
         "/content/Text-to-image-synthesis-with-GANs/src"
-    ]
+    ],
+    "python.pythonPath": "/home/atharva/miniconda3/envs/ml/bin/python"
 }
