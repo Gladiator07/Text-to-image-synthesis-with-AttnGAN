@@ -9,20 +9,19 @@ import torch.backends.cudnn as cudnn
 
 from PIL import Image
 
-from misc.config import cfg
-from misc.utils import mkdir_p
-from misc.utils import build_super_images, build_super_images2
-from misc.utils import weights_init, load_params, copy_G_params
-from model import G_DCGAN, G_NET
-from dataset import prepare_data
-from model import RNN_ENCODER, CNN_ENCODER
+from src.misc.config import cfg
+from src.misc.utils import mkdir_p
+from src.misc.utils import build_super_images, build_super_images2
+from src.misc.utils import weights_init, load_params, copy_G_params
+from src.model import G_DCGAN, G_NET
+from src.dataset import prepare_data
+from src.model import RNN_ENCODER, CNN_ENCODER
 
-from misc.losses import words_loss
-from misc.losses import discriminator_loss, generator_loss, KL_loss
+from src.misc.losses import words_loss
+from src.misc.losses import discriminator_loss, generator_loss, KL_loss
 import os
 import time
 import numpy as np
-import sys
 
 # ################# Text to image task############################ #
 class condGANTrainer(object):

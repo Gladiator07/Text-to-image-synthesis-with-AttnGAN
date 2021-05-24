@@ -8,8 +8,8 @@ import torch.nn.functional as F
 
 from torch.nn.utils.rnn import pack_padded_sequence, pad_packed_sequence
 
-from misc.config import cfg
-from GlobalAttention import GlobalAttentionGeneral as ATT_NET
+from src.misc.config import cfg
+from src.GlobalAttention import GlobalAttentionGeneral as ATT_NET
 
 
 class GLU(nn.Module):

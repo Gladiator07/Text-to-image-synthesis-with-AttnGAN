@@ -6,7 +6,7 @@ from __future__ import unicode_literals
 
 from nltk.tokenize import RegexpTokenizer
 from collections import defaultdict
-from misc.config import cfg
+from src.misc.config import cfg
 
 import torch
 import torch.utils.data as data
