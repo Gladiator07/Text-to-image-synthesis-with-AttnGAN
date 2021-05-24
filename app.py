@@ -1,13 +1,9 @@
 from __future__ import print_function
-import streamlit as st
-
 
 from src.misc.config import cfg, cfg_from_file
 from src.dataset import TextDataset
 from src.trainer import condGANTrainer as trainer
 
-import os
-import sys
 import time
 import random
 import pprint
@@ -15,22 +11,6 @@ import numpy as np
 
 import torch
 import torchvision.transforms as transforms
-
-dir_path = (os.path.abspath(os.path.join(os.path.realpath(__file__), './.')))
-sys.path.append(dir_path)
-
-
-# def parse_args():
-#     parser = argparse.ArgumentParser(description='Train a AttnGAN network')
-#     parser.add_argument('--cfg', dest='cfg_file',
-#                         help='optional config file',
-#                         default='cfg/bird_attn2.yml', type=str)
-#     parser.add_argument('--gpu', dest='gpu_id', type=int, default=-1)
-#     parser.add_argument('--data_dir', dest='data_dir', type=str, default='')
-#     parser.add_argument('--manualSeed', type=int, help='manual seed')
-#     args = parser.parse_args()
-#     return args
-
 
 def gen_example(wordtoix, algo, text):
     '''generate images from example sentences'''
@@ -70,49 +50,11 @@ def gen_example(wordtoix, algo, text):
 
 
 if __name__ == "__main__":
-    # args = parse_args()
-    # if args.cfg_file is not None:
-    #     cfg_from_file(args.cfg_file)
 
-    # if args.gpu_id != -1:
-    #     cfg.GPU_ID = args.gpu_id
-    # else:
-    #     cfg.CUDA = False
-
-    # if args.data_dir != '':
-    #     cfg.DATA_DIR = args.data_dir
-    from easydict import EasyDict as edict
-
-    import yaml
-    # config_filename = "eval_bird.yml"
-    # with open(config_filename, 'r') as f:
-    #     cfg = edict(yaml.load(f))
     cfg_from_file('eval_bird.yml')
     print('Using config:')
     pprint.pprint(cfg)
     cfg.CUDA = False
-
-    # if not cfg.TRAIN.FLAG:
-    #     args.manualSeed = 100
-    # elif args.manualSeed is None:
-    #     args.manualSeed = random.randint(1, 10000)
-    # random.seed(args.manualSeed)
-    # np.random.seed(args.manualSeed)
-    # torch.manual_seed(args.manualSeed)
-    # if cfg.CUDA:
-    #     torch.cuda.manual_seed_all(args.manualSeed)
-
-    # now = datetime.datetime.now(dateutil.tz.tzlocal())
-    # timestamp = now.strftime('%Y_%m_%d_%H_%M_%S')
-    # output_dir = '../output/%s_%s_%s' % \
-        # (cfg.DATASET_NAME, cfg.CONFIG_NAME, timestamp)
-
-    # split_dir, bshuffle = 'train', True
-    # if not cfg.TRAIN.FLAG:
-    #     # bshuffle = False
-    #     split_dir = 'test'
-
-    # Get data loader
     manualSeed = 100
     random.seed(manualSeed)
     np.random.seed(manualSeed)
@@ -137,6 +79,6 @@ if __name__ == "__main__":
     algo = trainer(output_dir, dataloader, dataset.n_words, dataset.ixtoword)
 
     start_t = time.time()     
-    gen_example(dataset.wordtoix, algo, text="A small yellow bird with a black crown and a short blue curved beak")  # generate images for customized captions
+    gen_example(dataset.wordtoix, algo, text="A small yellow bird with a black crown and a short black curved beak")  # generate images for customized captions
     end_t = time.time()
     print('Total time for training:', end_t - start_t)
