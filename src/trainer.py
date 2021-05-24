@@ -442,7 +442,7 @@ class condGANTrainer(object):
 
     def gen_example(self, data_dic):
         if cfg.TRAIN.NET_G == '':
-            print('Error: the path for morels is not found!')
+            print('Error: the path for model is not found!')
         else:
             # Build and load the generator
             text_encoder = \
