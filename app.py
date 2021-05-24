@@ -12,6 +12,7 @@ import numpy as np
 import torch
 import torchvision.transforms as transforms
 
+
 def gen_example(wordtoix, algo, text):
     '''generate images from example sentences'''
     from nltk.tokenize import RegexpTokenizer
@@ -19,11 +20,10 @@ def gen_example(wordtoix, algo, text):
 
     captions = []
     cap_lens = []
-    
+
     sent = text.replace("\ufffd\ufffd", " ")
     tokenizer = RegexpTokenizer(r'\w+')
     tokens = tokenizer.tokenize(sent.lower())
-   
 
     rev = []
     for t in tokens:
@@ -51,6 +51,12 @@ def gen_example(wordtoix, algo, text):
 
 if __name__ == "__main__":
 
+    import streamlit as st
+
+    st.header("Text To Image Synthesis using AttnGAN")
+
+    user_input = st.text_input("Enter the bird description")
+
     cfg_from_file('eval_bird.yml')
     print('Using config:')
     pprint.pprint(cfg)
@@ -77,8 +83,26 @@ if __name__ == "__main__":
 
     # Define models and go to train/evaluate
     algo = trainer(output_dir, dataloader, dataset.n_words, dataset.ixtoword)
+    if user_input:
 
-    start_t = time.time()     
-    gen_example(dataset.wordtoix, algo, text="A small yellow bird with a black crown and a short black curved beak")  # generate images for customized captions
-    end_t = time.time()
-    print('Total time for training:', end_t - start_t)
+        start_t = time.time()
+        # generate images for customized captions
+        gen_example(dataset.wordtoix, algo,
+                    text=user_input)
+        end_t = time.time()
+        print('Total time for training:', end_t - start_t)
+
+        st.image("models/bird_AttnGAN2/output/0_s_0_g2.png")
+
+        st.write("The attention given for each word")
+        st.image("models/bird_AttnGAN2/output/0_s_0_a1.png")
+
+        # with st.section(label="show the first stage created images"):
+        #     st.image("models/bird_AttnGAN2/output/0_s_0_a0.png")
+
+        with st.beta_expander("click to see the first stage image"):
+            st.write("First stage image")
+            st.image("models/bird_AttnGAN2/output/0_s_0_g1.png")
+            st.write("First stage attention on image")
+            st.image("models/bird_AttnGAN2/output/0_s_0_a0.png")
+
