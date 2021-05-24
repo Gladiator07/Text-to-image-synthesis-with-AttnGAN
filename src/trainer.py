@@ -35,7 +35,7 @@ class condGANTrainer(object):
 
         # torch.cuda.set_device(cfg.GPU_ID)
         if cfg.CUDA:
-            os.environ['CUDA_VISIBILE_DEVICES'] = cfg.GPU_ID
+            os.environ['CUDA_VISIBILE_DEVICES'] = str(cfg.GPU_ID)
         
         cudnn.benchmark = True
 
