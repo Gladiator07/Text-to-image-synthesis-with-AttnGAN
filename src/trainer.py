@@ -128,7 +128,10 @@ class condGANTrainer(object):
             image_encoder = image_encoder.cuda()
             netG.cuda()
             for i in range(len(netsD)):
-                netsD[i].cuda()
+                if cfg.CUDA:
+                    netsD[i].cuda()
+                else:
+                    netsD[i]
         return [text_encoder, image_encoder, netG, netsD, epoch]
 
     def define_optimizers(self, netG, netsD):
