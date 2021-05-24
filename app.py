@@ -11,9 +11,6 @@ import sys
 import time
 import random
 import pprint
-import datetime
-import dateutil.tz
-import argparse
 import numpy as np
 
 import torch
@@ -66,7 +63,7 @@ def gen_example(wordtoix, algo, text):
         cap = captions[idx]
         c_len = len(cap)
         cap_array[i, :c_len] = cap
-    name = "input"
+    name = "output"
     key = name[(name.rfind('/') + 1):]
     data_dic[key] = [cap_array, cap_lens, sorted_indices]
     algo.gen_example(data_dic)
@@ -84,10 +81,16 @@ if __name__ == "__main__":
 
     # if args.data_dir != '':
     #     cfg.DATA_DIR = args.data_dir
-    cfg = "eval_bird.yml"
-    cfg_from_file(cfg)
+    from easydict import EasyDict as edict
+
+    import yaml
+    # config_filename = "eval_bird.yml"
+    # with open(config_filename, 'r') as f:
+    #     cfg = edict(yaml.load(f))
+    cfg_from_file('eval_bird.yml')
     print('Using config:')
     pprint.pprint(cfg)
+    cfg.CUDA = False
 
     # if not cfg.TRAIN.FLAG:
     #     args.manualSeed = 100
@@ -110,6 +113,10 @@ if __name__ == "__main__":
     #     split_dir = 'test'
 
     # Get data loader
+    manualSeed = 100
+    random.seed(manualSeed)
+    np.random.seed(manualSeed)
+    torch.manual_seed(manualSeed)
     output_dir = "output/"
     split_dir = "test"
     bshuffle = True
@@ -130,6 +137,6 @@ if __name__ == "__main__":
     algo = trainer(output_dir, dataloader, dataset.n_words, dataset.ixtoword)
 
     start_t = time.time()     
-    gen_example(dataset.wordtoix, algo, text="A black bird")  # generate images for customized captions
+    gen_example(dataset.wordtoix, algo, text="A small yellow bird with a black crown and a short blue curved beak")  # generate images for customized captions
     end_t = time.time()
     print('Total time for training:', end_t - start_t)
