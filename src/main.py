@@ -1,6 +1,6 @@
 from __future__ import print_function
 
-from misc.config import cfg, cfg_from_file
+from src.misc.config import cfg, cfg_from_file
 from dataset import TextDataset
 from trainer import condGANTrainer as trainer
 
