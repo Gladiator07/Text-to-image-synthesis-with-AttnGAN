@@ -49,13 +49,36 @@ def gen_example(wordtoix, algo, text):
     algo.gen_example(data_dic)
 
 
+# streamlit function
+
+def center_element(type,text=None, img=None):
+    """
+    Function to center a streamlit element (text, image, etc)
+    """
+    col1, col2, col3 = st.beta_columns([1,6,1])
+
+    with col1:
+        st.write("")
+
+    with col2:
+        if type == "heading":
+            st.header(text)
+
+        if type == "image":
+            st.image(img)
+        
+        if type == "text":
+            st.text(text)
+        
+        # else:
+        #     raise Exception("Unsupported input type")
+
+    with col3:
+        st.write("")
+
 if __name__ == "__main__":
 
     import streamlit as st
-
-    st.header("Text To Image Synthesis using AttnGAN")
-
-    user_input = st.text_input("Enter the bird description")
 
     cfg_from_file('eval_bird.yml')
     print('Using config:')
@@ -83,6 +106,28 @@ if __name__ == "__main__":
 
     # Define models and go to train/evaluate
     algo = trainer(output_dir, dataloader, dataset.n_words, dataset.ixtoword)
+
+    # center_element(type="text",text="TEXT TO IMAGE SYNTHESIS USING ATTNGAN")
+    center_element(type="heading",text="Text To Image Synthesis using AttnGAN")
+
+
+    def header(url):
+        st.markdown(f'<p style="background-color:#7d1db5;color:#f5e50a;font-size:20px;border-radius:2%;">{url}</p>', unsafe_allow_html=True)
+
+    st.markdown("---")
+    st.markdown("Creator: [Atharva Ingle](https://github.com/Gladiator07)")
+    st.markdown("Code: [GitHub Repository](https://github.com/Gladiator07/Text-to-image-synthesis-with-AttnGAN)")
+    st.markdown("---")
+    
+    st.subheader("Enter the description of the bird in the text box you like !!!")
+    st.write("Example: A yellow bird with black and short curved beak")
+    st.markdown("#")
+    user_input = st.text_input("Write the bird description below")
+
+
+
+
+
     if user_input:
 
         start_t = time.time()
