@@ -10,14 +10,14 @@ __C = edict()
 cfg = __C
 
 # Dataset name: flowers, birds
-__C.DATASET_NAME = 'birds'
-__C.CONFIG_NAME = ''
-__C.DATA_DIR = ''
+__C.DATASET_NAME = "birds"
+__C.CONFIG_NAME = ""
+__C.DATA_DIR = ""
 __C.GPU_ID = 0
 __C.CUDA = True
 __C.WORKERS = 6
 
-__C.RNN_TYPE = 'LSTM'   # 'GRU'
+__C.RNN_TYPE = "LSTM"  # 'GRU'
 __C.B_VALIDATION = False
 
 __C.TREE = edict()
@@ -35,8 +35,8 @@ __C.TRAIN.GENERATOR_LR = 2e-4
 __C.TRAIN.ENCODER_LR = 2e-4
 __C.TRAIN.RNN_GRAD_CLIP = 0.25
 __C.TRAIN.FLAG = True
-__C.TRAIN.NET_E = ''
-__C.TRAIN.NET_G = ''
+__C.TRAIN.NET_E = ""
+__C.TRAIN.NET_G = ""
 __C.TRAIN.B_NET_D = True
 
 __C.TRAIN.SMOOTH = edict()
@@ -73,7 +73,7 @@ def _merge_a_into_b(a, b):
     for k, v in a.items():
         # a must specify keys that are in b
         if k not in b:
-            raise KeyError('{} is not a valid config key'.format(k))
+            raise KeyError("{} is not a valid config key".format(k))
 
         # the types must match, too
         old_type = type(b[k])
@@ -81,16 +81,18 @@ def _merge_a_into_b(a, b):
             if isinstance(b[k], np.ndarray):
                 v = np.array(v, dtype=b[k].dtype)
             else:
-                raise ValueError(('Type mismatch ({} vs. {}) '
-                                  'for config key: {}').format(type(b[k]),
-                                                               type(v), k))
+                raise ValueError(
+                    ("Type mismatch ({} vs. {}) " "for config key: {}").format(
+                        type(b[k]), type(v), k
+                    )
+                )
 
         # recursively merge dicts
         if type(v) is edict:
             try:
                 _merge_a_into_b(a[k], b[k])
             except:
-                print('Error under config key: {}'.format(k))
+                print("Error under config key: {}".format(k))
                 raise
         else:
             b[k] = v
@@ -99,7 +101,8 @@ def _merge_a_into_b(a, b):
 def cfg_from_file(filename):
     """Load a config file and merge it into the default options."""
     import yaml
-    with open(filename, 'r') as f:
+
+    with open(filename, "r") as f:
         yaml_cfg = edict(yaml.load(f))
 
     _merge_a_into_b(yaml_cfg, __C)
