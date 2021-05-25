@@ -44,3 +44,10 @@ def attngan_explanation():
 
     The researchers also made sure that the text and image were aligned to each other. They included a component in the final layer's loss, which we will talk about in detail further.
     """)
+
+    st.markdown("#")
+
+    st.image("img/architecture.png", caption="AttnGAN architecture")
+    st.markdown("#")
+
+    
