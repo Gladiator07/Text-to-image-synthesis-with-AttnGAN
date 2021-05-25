@@ -59,11 +59,13 @@ def center_element(type, text=None, img_path=None):
     """
     if type == "image":
         col1, col2, col3 = st.beta_columns([1, 2, 1])
+
     elif type == "text" or type == "heading":
         col1, col2, col3 = st.beta_columns([1, 6, 1])
 
     elif type == "subheading":
         col1, col2, col3 = st.beta_columns([1, 2, 1])
+    
     with col1:
         st.write("")
 
