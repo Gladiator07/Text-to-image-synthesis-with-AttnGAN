@@ -122,6 +122,8 @@ if __name__ == "__main__":
     st.subheader("Enter the description of the bird in the text box you like !!!")
     st.write("Example: A yellow bird with black and short curved beak")
     st.markdown("#")
+    
+    
     user_input = st.text_input("Write the bird description below")
 
 
@@ -141,9 +143,6 @@ if __name__ == "__main__":
 
         st.write("The attention given for each word")
         st.image("models/bird_AttnGAN2/output/0_s_0_a1.png")
-
-        # with st.section(label="show the first stage created images"):
-        #     st.image("models/bird_AttnGAN2/output/0_s_0_a0.png")
 
         with st.beta_expander("click to see the first stage image"):
             st.write("First stage image")
