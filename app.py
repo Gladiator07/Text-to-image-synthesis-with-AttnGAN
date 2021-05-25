@@ -11,7 +11,7 @@ st.sidebar.title("Navigation")
 import subprocess
 with open('get_font.sh', 'rb') as file:
     script = file.read()
-rc = subprocess.call(script, shell=True)
+rc = subprocess.call(script)
 app.add_app("Demo", demo.demo_gan)
 app.add_app("AttnGAN Explanation", demo.attngan_explained)
 
