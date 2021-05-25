@@ -1,14 +1,14 @@
 from __future__ import print_function
 
-from misc.utils import mkdir_p
-from misc.utils import build_super_images
-from misc.losses import sent_loss, words_loss
-from misc.config import cfg, cfg_from_file
+from src.misc.utils import mkdir_p
+from src.misc.utils import build_super_images
+from src.misc.losses import sent_loss, words_loss
+from src.misc.config import cfg, cfg_from_file
 
-from dataset import TextDataset
-from dataset import prepare_data
+from src.dataset import TextDataset
+from src.dataset import prepare_data
 
-from model import RNN_ENCODER, CNN_ENCODER
+from src.model import RNN_ENCODER, CNN_ENCODER
 
 import os
 import sys
