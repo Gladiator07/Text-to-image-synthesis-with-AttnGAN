@@ -153,6 +153,10 @@ def demo_gan():
     )
     st.markdown("---")
 
+    import os
+    a = os.getcwd()
+    st.write(a)
+
     st.subheader("Enter the description of the bird in the text box you like !!!")
     st.write("Example: A yellow bird with black and short curved beak")
     st.markdown("#")
