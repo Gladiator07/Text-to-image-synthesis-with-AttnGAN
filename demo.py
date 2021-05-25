@@ -68,12 +68,18 @@ def center_element(type, text=None, img_path=None):
     elif type == "subheading":
         col1, col2, col3 = st.beta_columns([1, 2, 1])
     
+    elif type == "title":
+        col1, col2, col3 = st.beta_columns([1, 8, 1])
+    
     with col1:
         st.write("")
 
     with col2:
         if type == "heading":
             st.header(text)
+
+        elif type == "title":
+            st.title(text)
 
         elif type == "image":
             st.image(img_path)
@@ -132,9 +138,8 @@ def demo_gan():
     # Define models and go to train/evaluate
     algo = trainer(output_dir, dataloader, dataset.n_words, dataset.ixtoword)
 
-    # center_element(type="text",text="TEXT TO IMAGE SYNTHESIS USING ATTNGAN")
-    center_element(type="heading", text="Text To Image Synthesis using AttnGAN")
 
+    st.title("Text To Image Synthesis using AttnGAN")
     def header(url):
         st.markdown(
             f'<p style="background-color:#7d1db5;color:#f5e50a;font-size:20px;border-radius:2%;">{url}</p>',
