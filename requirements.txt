@@ -1,6 +1,7 @@
-https://download.pytorch.org/whl/cpu/torch-1.8.1%2Bcpu-cp37-cp37m-linux_x86_64.whl
-https://download.pytorch.org/whl/cpu/torchvision-0.9.1%2Bcpu-cp37-cp37m-linux_x86_64.whl
-https://download.pytorch.org/whl/cpu/torchaudio-0.8.1%2Bcpu-cp37-cp37m-linux_x86_64.whl
+-f https://download.pytorch.org/whl/torch_stable.html
+torch==1.8.1+cpu 
+torchvision==0.9.1+cpu 
+torchaudio==0.8.1 -f https://download.pytorch.org/whl/torch_stable.html
 streamlit==0.81.1
 nltk==3.5
 numpy==1.20.1
