@@ -7,11 +7,8 @@ st.set_page_config(page_title='AttnGAN', initial_sidebar_state = 'auto')
 
 st.sidebar.title("Navigation")
 # Add all application here
-
-import subprocess
-with open('get_font.sh', 'rb') as file:
-    script = file.read()
-rc = subprocess.call(script)
+import os
+print(os.getcwd())
 app.add_app("Demo", demo.demo_gan)
 app.add_app("AttnGAN Explanation", demo.attngan_explained)
 
