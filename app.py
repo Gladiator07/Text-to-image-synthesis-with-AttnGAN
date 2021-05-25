@@ -142,23 +142,23 @@ if __name__ == "__main__":
     if user_input:
 
         start_t = time.time()
+
         # generate images for customized captions
         gen_example(dataset.wordtoix, algo,
                     text=user_input)
         end_t = time.time()
         print('Total time for training:', end_t - start_t)
-
-        # st.image("models/bird_AttnGAN2/output/0_s_0_g2.png")
+        st.write(f"Your input: {user_input}")
         center_element(type="subheading", text="AttnGAN synthesized bird")
+        st.text("")
         center_element(type="image", img_path = "models/bird_AttnGAN2/output/0_s_0_g2.png")
 
         center_element(type="subheading", text="The attention given for each word")
-        # center_element(type="text", img_path = "models/bird_AttnGAN2/output/0_s_0_a1.png")
         st.image("models/bird_AttnGAN2/output/0_s_0_a1.png")
 
         st.markdown("---")
         with st.beta_expander("Click to see the first stage images"):
             st.write("First stage image")
             st.image("models/bird_AttnGAN2/output/0_s_0_g1.png")
-            st.write("First stage attention on image")
+            st.write("First stage attention")
             st.image("models/bird_AttnGAN2/output/0_s_0_a0.png")
