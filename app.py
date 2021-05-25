@@ -51,12 +51,17 @@ def gen_example(wordtoix, algo, text):
 
 # streamlit function
 
-def center_element(type,text=None, img=None):
+def center_element(type,text=None, img_path=None):
     """
     Function to center a streamlit element (text, image, etc)
     """
-    col1, col2, col3 = st.beta_columns([1,6,1])
+    if type == "image":
+        col1, col2, col3 = st.beta_columns([1,2,1])
+    elif type == "text" or type == "heading":
+        col1, col2, col3 = st.beta_columns([1,6,1])
 
+    elif type == "subheading":
+        col1, col2, col3 = st.beta_columns([1,2,1])
     with col1:
         st.write("")
 
@@ -64,11 +69,14 @@ def center_element(type,text=None, img=None):
         if type == "heading":
             st.header(text)
 
-        if type == "image":
-            st.image(img)
+        elif type == "image":
+            st.image(img_path)
         
-        if type == "text":
-            st.text(text)
+        elif type == "text":
+            st.write(text)
+        
+        elif type == "subheading":
+            st.subheader(text)
         
         # else:
         #     raise Exception("Unsupported input type")
@@ -125,6 +133,7 @@ if __name__ == "__main__":
     
     
     user_input = st.text_input("Write the bird description below")
+    st.markdown("---")
 
 
 
@@ -139,14 +148,17 @@ if __name__ == "__main__":
         end_t = time.time()
         print('Total time for training:', end_t - start_t)
 
-        st.image("models/bird_AttnGAN2/output/0_s_0_g2.png")
+        # st.image("models/bird_AttnGAN2/output/0_s_0_g2.png")
+        center_element(type="subheading", text="AttnGAN synthesized bird")
+        center_element(type="image", img_path = "models/bird_AttnGAN2/output/0_s_0_g2.png")
 
-        st.write("The attention given for each word")
+        center_element(type="subheading", text="The attention given for each word")
+        # center_element(type="text", img_path = "models/bird_AttnGAN2/output/0_s_0_a1.png")
         st.image("models/bird_AttnGAN2/output/0_s_0_a1.png")
 
-        with st.beta_expander("click to see the first stage image"):
+        st.markdown("---")
+        with st.beta_expander("Click to see the first stage images"):
             st.write("First stage image")
             st.image("models/bird_AttnGAN2/output/0_s_0_g1.png")
             st.write("First stage attention on image")
             st.image("models/bird_AttnGAN2/output/0_s_0_a0.png")
-
