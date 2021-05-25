@@ -5,7 +5,6 @@ torchaudio==0.8.1 -f https://download.pytorch.org/whl/torch_stable.html
 streamlit==0.81.1
 nltk==3.5
 numpy==1.20.1
-torch==1.8.1+cpu
 easydict==1.9
 scikit_image==0.18.1
 pandas==1.2.3
