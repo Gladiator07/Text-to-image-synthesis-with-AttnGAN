@@ -184,6 +184,7 @@ def attngan_explained():
 
     # center_element(type="heading", text="AttnGAN: Fine-Grained Text To Image Generation with Attentional Generative Adverserial Networks")
     st.header("**AttnGAN**: Fine-Grained Text To Image Generation with Attentional Generative Adverserial Networks")
-    explanation = read_markdown_file("attngan_explanation.md")
-    st.markdown(explanation, unsafe_allow_html=True)
+    from attngan_explanation import attngan_explanation
+
+    attngan_explanation()
     
