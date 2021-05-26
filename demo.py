@@ -15,7 +15,7 @@ import torchvision.transforms as transforms
 from pathlib import Path
 import streamlit as st
 
-@st.cache(max_entries=20, ttl=360)
+@st.cache(max_entries=20, ttl=360, suppress_st_warning=True)
 def gen_example(wordtoix, algo, text):
     """generate images from example sentences"""
     from nltk.tokenize import RegexpTokenizer
