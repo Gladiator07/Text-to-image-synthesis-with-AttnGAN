@@ -102,7 +102,7 @@ def read_markdown_file(markdown_file):
 # if __name__ == "__main__":
 
 
-@st.cache(max_entries=20, ttl=120)
+@st.cache(max_entries=20, ttl=3600)
 def demo_gan():
 
     cfg_from_file("eval_bird.yml")
