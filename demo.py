@@ -106,8 +106,8 @@ def read_markdown_file(markdown_file):
 def demo_gan():
 
     cfg_from_file("eval_bird.yml")
-    print("Using config:")
-    pprint.pprint(cfg)
+    # print("Using config:")
+    # pprint.pprint(cfg)
     cfg.CUDA = False
     manualSeed = 100
     random.seed(manualSeed)
