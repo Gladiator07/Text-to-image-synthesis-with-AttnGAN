@@ -15,6 +15,7 @@ import torchvision.transforms as transforms
 from pathlib import Path
 import streamlit as st
 
+@st.cache(max_entries=20, ttl=360)
 def gen_example(wordtoix, algo, text):
     """generate images from example sentences"""
     from nltk.tokenize import RegexpTokenizer
@@ -99,10 +100,8 @@ def center_element(type, text=None, img_path=None):
 def read_markdown_file(markdown_file):
     return Path(markdown_file).read_text()
 
-# if __name__ == "__main__":
 
 
-@st.cache(max_entries=20, ttl=3600)
 def demo_gan():
 
     cfg_from_file("eval_bird.yml")
@@ -141,11 +140,6 @@ def demo_gan():
 
 
     st.title("Text To Image Synthesis using AttnGAN")
-    def header(url):
-        st.markdown(
-            f'<p style="background-color:#7d1db5;color:#f5e50a;font-size:20px;border-radius:2%;">{url}</p>',
-            unsafe_allow_html=True,
-        )
 
     st.markdown("---")
     st.markdown("Creator: [Atharva Ingle](https://github.com/Gladiator07)")
