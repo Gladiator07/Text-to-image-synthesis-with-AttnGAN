@@ -1,6 +1,5 @@
 from __future__ import print_function
 
-from cachetools import ttl
 
 from src.misc.config import cfg, cfg_from_file
 from src.dataset import TextDataset
@@ -98,11 +97,6 @@ def center_element(type, text=None, img_path=None):
     with col3:
         st.write("")
 
-def read_markdown_file(markdown_file):
-    return Path(markdown_file).read_text()
-
-
-
 def demo_gan():
 
     cfg_from_file("eval_bird.yml")
@@ -124,7 +118,6 @@ def demo_gan():
             transforms.RandomHorizontalFlip(),
         ]
     )
-    # st.cache(func=TextDataset, ttl=3600)
     dataset = TextDataset(
         cfg.DATA_DIR, split_dir, base_size=cfg.TREE.BASE_SIZE, transform=image_transform
     )
@@ -138,7 +131,7 @@ def demo_gan():
     )
 
     # Define models and go to train/evaluate
-    st.cache(func=trainer, ttl=3600)
+    st.cache(func=trainer, ttl=3600, suppress_st_warning=True)
 
     algo = trainer(output_dir, dataloader, dataset.n_words, dataset.ixtoword)
 
