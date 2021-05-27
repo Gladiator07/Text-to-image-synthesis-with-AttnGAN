@@ -1,5 +1,7 @@
 from __future__ import print_function
 
+from cachetools import ttl
+
 from src.misc.config import cfg, cfg_from_file
 from src.dataset import TextDataset
 from src.trainer import condGANTrainer as trainer
@@ -15,7 +17,6 @@ import torchvision.transforms as transforms
 from pathlib import Path
 import streamlit as st
 
-@st.cache(max_entries=20, ttl=360, suppress_st_warning=True)
 def gen_example(wordtoix, algo, text):
     """generate images from example sentences"""
     from nltk.tokenize import RegexpTokenizer
@@ -107,11 +108,6 @@ def demo_gan():
     cfg_from_file("eval_bird.yml")
     # print("Using config:")
     # pprint.pprint(cfg)
-
-    # Prepare for heroku deployment
-    import os
-    print(os.getcwd())
-    
     cfg.CUDA = False
     manualSeed = 100
     random.seed(manualSeed)
@@ -128,6 +124,7 @@ def demo_gan():
             transforms.RandomHorizontalFlip(),
         ]
     )
+    # st.cache(func=TextDataset, ttl=3600)
     dataset = TextDataset(
         cfg.DATA_DIR, split_dir, base_size=cfg.TREE.BASE_SIZE, transform=image_transform
     )
@@ -141,6 +138,8 @@ def demo_gan():
     )
 
     # Define models and go to train/evaluate
+    st.cache(func=trainer, ttl=3600)
+
     algo = trainer(output_dir, dataloader, dataset.n_words, dataset.ixtoword)
 
 
