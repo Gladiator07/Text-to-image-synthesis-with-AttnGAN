@@ -148,7 +148,7 @@ def demo_gan():
 
 
     st.subheader("Enter the description of the bird in the text box you like !!!")
-    st.write("Example: A yellow bird with black and short curved beak")
+    st.write("**Example**: A yellow bird with red crown, black short beak and long tail")
     st.markdown("#")
 
     user_input = st.text_input("Write the bird description below")
@@ -162,7 +162,7 @@ def demo_gan():
         gen_example(dataset.wordtoix, algo, text=user_input)
         end_t = time.time()
         print("Total time for training:", end_t - start_t)
-        st.write(f"Your input: {user_input}")
+        st.write(f"**Your input**: {user_input}")
         center_element(type="subheading", text="AttnGAN synthesized bird")
         st.text("")
         center_element(
