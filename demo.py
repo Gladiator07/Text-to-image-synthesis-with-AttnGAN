@@ -118,6 +118,7 @@ def demo_gan():
             transforms.RandomHorizontalFlip(),
         ]
     )
+    st.cache(func=TextDataset, ttl=3600)
     dataset = TextDataset(
         cfg.DATA_DIR, split_dir, base_size=cfg.TREE.BASE_SIZE, transform=image_transform
     )
