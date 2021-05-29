@@ -118,7 +118,7 @@ def demo_gan():
             transforms.RandomHorizontalFlip(),
         ]
     )
-    st.cache(func=TextDataset, persist=True)
+    st.cache(func=TextDataset, persist=True, max_entries=10, ttl=10000)
     dataset = TextDataset(
         cfg.DATA_DIR, split_dir, base_size=cfg.TREE.BASE_SIZE, transform=image_transform
     )
@@ -132,7 +132,7 @@ def demo_gan():
     )
 
     # Define models and go to train/evaluate
-    st.cache(func=trainer,persist=True, suppress_st_warning=True)
+    st.cache(func=trainer,persist=True, suppress_st_warning=True, max_entries=10, ttl=10000)
 
     algo = trainer(output_dir, dataloader, dataset.n_words, dataset.ixtoword)
 
