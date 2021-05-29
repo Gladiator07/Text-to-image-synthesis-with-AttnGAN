@@ -16,6 +16,7 @@ import torchvision.transforms as transforms
 from pathlib import Path
 import streamlit as st
 
+
 def gen_example(wordtoix, algo, text):
     """generate images from example sentences"""
     from nltk.tokenize import RegexpTokenizer
@@ -68,10 +69,10 @@ def center_element(type, text=None, img_path=None):
 
     elif type == "subheading":
         col1, col2, col3 = st.beta_columns([1, 2, 1])
-    
+
     elif type == "title":
         col1, col2, col3 = st.beta_columns([1, 8, 1])
-    
+
     with col1:
         st.write("")
 
@@ -96,6 +97,7 @@ def center_element(type, text=None, img_path=None):
 
     with col3:
         st.write("")
+
 
 def demo_gan():
 
@@ -132,10 +134,11 @@ def demo_gan():
     )
 
     # Define models and go to train/evaluate
-    st.cache(func=trainer,persist=True, suppress_st_warning=True, max_entries=10, ttl=10000)
+    st.cache(
+        func=trainer, persist=True, suppress_st_warning=True, max_entries=10, ttl=10000
+    )
 
     algo = trainer(output_dir, dataloader, dataset.n_words, dataset.ixtoword)
-
 
     st.title("Text To Image Synthesis using AttnGAN")
 
@@ -146,9 +149,10 @@ def demo_gan():
     )
     st.markdown("---")
 
-
     st.subheader("Enter the description of the bird in the text box you like !!!")
-    st.write("**Example**: A yellow bird with red crown, black short beak and long tail")
+    st.write(
+        "**Example**: A yellow bird with red crown, black short beak and long tail"
+    )
     st.markdown("#")
 
     user_input = st.text_input("Write the bird description below")
@@ -179,11 +183,13 @@ def demo_gan():
             st.write("First stage attention")
             st.image("models/bird_AttnGAN2/output/0_s_0_a0.png")
 
+
 def attngan_explained():
 
     # center_element(type="heading", text="AttnGAN: Fine-Grained Text To Image Generation with Attentional Generative Adverserial Networks")
-    st.header("**AttnGAN**: Fine-Grained Text To Image Generation with Attentional Generative Adverserial Networks")
+    st.header(
+        "**AttnGAN**: Fine-Grained Text To Image Generation with Attentional Generative Adverserial Networks"
+    )
     from attngan_explanation import attngan_explanation
 
     attngan_explanation()
-    
