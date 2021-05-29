@@ -153,6 +153,8 @@ def demo_gan():
     st.write(
         "**Example**: A yellow bird with red crown, black short beak and long tail"
     )
+    st.write("")
+    st.markdown("**PS**: The synthesized birds might not exist on earth 😬😮😱")
     st.markdown("#")
 
     user_input = st.text_input("Write the bird description below")
