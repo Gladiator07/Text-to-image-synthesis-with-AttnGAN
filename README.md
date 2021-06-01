@@ -15,10 +15,10 @@ A **PyTorch** re-implementation of the paper **AttnGAN**: Fine-Grained Text to I
 
 
 ### References
-- [Research Paper](https://arxiv.org/abs/1711.104850)
+- [Research Paper](https://arxiv.org/abs/1711.10485)
 - [Explanation of the paper](https://www.youtube.com/watch?v=Epvh4EvznUA)
 - [Python 3.x implementation - Tensorflow](https://github.com/taki0112/AttnGAN-Tensorflow)
 - [Python 2.x implementation - PyTorch](https://github.com/taoxugit/AttnGAN)
 
 
-#### Note: This is a rough Readme as I am quite overloaded with work right now, this Readme will be updated soon with all the details 
+#### Note: This is a rough Readme as I am quite overloaded with work right now, this Readme will be updated soon with all the details (results, benchmarks, training hardware, model configurations, etc)
